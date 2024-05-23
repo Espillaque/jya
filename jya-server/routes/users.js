@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Usuario = require("../sequelize/models").Usuario;
+const crypto = require("crypto");
 
 // Ruta para obtener un usuario por su ID
 router.post("/find", async (req, res) => {
@@ -84,6 +85,26 @@ router.post("/create", async (req, res) => {
     res.status(201).json(nuevoUsuario);
   } catch (error) {
     console.error("Error al crear usuario:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  const { correo_electronico, contrasena } = req.body;
+  try {
+    const user = await Usuario.findAll({
+      where: {
+        correo_electronico: correo_electronico,
+      },
+    });
+    if (user[0].contrasena === contrasena) {
+      res.status(200).json({ token: crypto.randomUUID() });
+    }else{
+      res.status(404).json({ error: "Invalid credentials" });
+    }
+    
+  } catch (error) {
+    console.error("Error al loguear usuario:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });

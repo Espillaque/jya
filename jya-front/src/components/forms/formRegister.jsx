@@ -1,11 +1,15 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { MyContext } from "../../context";
+import ROUTES from "../../router/routes";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const userRef = useRef(null);
+
+  const { contextData, setContextData } = useContext(MyContext);
 
   const onSubmit = (data) => {
     data.preventDefault();
@@ -64,7 +68,13 @@ const RegisterForm = () => {
           <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
             <Link to="/">
               <button
-                type="submit"
+                type="button"
+                onClick={() => {
+                  setContextData({
+                    ...contextData,
+                    activeRoute: ROUTES.LOGIN,
+                  });
+                }}
                 class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
               >
                 Return

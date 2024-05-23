@@ -28,14 +28,14 @@ router.get("/", function (req, res) {
   res.send("respond with a resource");
 });
 
-router.put('/update', async (req, res) => {
+router.put("/update", async (req, res) => {
   const userId = req.body.id;
   const { nombre, correo_electronico, contrasena } = req.body;
 
   try {
     const usuario = await Usuario.findByPk(userId);
     if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+      return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
     // Actualizar el usuario con los nuevos datos
@@ -48,18 +48,18 @@ router.put('/update', async (req, res) => {
 
     res.json(usuario);
   } catch (error) {
-    console.error('Error al actualizar usuario:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    console.error("Error al actualizar usuario:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete("/delete", async (req, res) => {
   const userId = req.body.id;
 
   try {
     const usuario = await Usuario.findByPk(userId);
     if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+      return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
     // Eliminar el usuario
@@ -67,20 +67,24 @@ router.delete('/delete', async (req, res) => {
 
     res.status(204).send(); // No Content
   } catch (error) {
-    console.error('Error al eliminar usuario:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    console.error("Error al eliminar usuario:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
-router.post('/create', async (req, res) => {
+router.post("/create", async (req, res) => {
   const { nombre, correo_electronico, contrasena } = req.body;
 
   try {
-    const nuevoUsuario = await Usuario.create({ nombre, correo_electronico, contrasena });
+    const nuevoUsuario = await Usuario.create({
+      nombre,
+      correo_electronico,
+      contrasena,
+    });
     res.status(201).json(nuevoUsuario);
   } catch (error) {
-    console.error('Error al crear usuario:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    console.error("Error al crear usuario:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 

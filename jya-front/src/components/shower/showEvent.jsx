@@ -1,19 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const ShowEvent = () => {
+  const onSubmit = (data) => {};
 
-    const onSubmit = (data) => { }
-
-    
-
-    return (
-
-    <></>    
-
-
-
-
-    );
-}
+  return <></>;
+};
 
 export default ShowEvent;

@@ -1,18 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const FormList = () => {
-
-    
-    
-
-    return (
-
-        <></>
-
-
-
-
-    );
-}
+  return <></>;
+};
 
 export default FormList;

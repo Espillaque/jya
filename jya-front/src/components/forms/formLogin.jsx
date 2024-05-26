@@ -19,8 +19,8 @@ const LoginForm = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      correo_electronico: "mari@gmail.com",
-      contrasena: "mari",
+      correo_electronico: email,
+      contrasena: password,
     });
 
     const requestOptions = {

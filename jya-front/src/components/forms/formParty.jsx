@@ -1,7 +1,9 @@
 import React from "react";
 
-const PartyForm = () => {
+const PartyForm = ({selectedGame}) => {
   const onSubmit = (data) => {};
+
+  
 
   return (
     <div className="flex justify-center items-center w-full h-screen bg-white">
@@ -16,7 +18,9 @@ const PartyForm = () => {
             <input
               className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               type="text"
-              placeholder="Nombre del juego de mesa*"
+              placeholder="Busca en la lista de abajo el juego*"
+              value={selectedGame}
+              disabled
             />
             <input
               className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
@@ -51,6 +55,8 @@ const PartyForm = () => {
         </div>
       </div>
     </div>
+
+    
   );
 };
 

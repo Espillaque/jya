@@ -99,4 +99,14 @@ router.post("/find", async (req, res) => {
   }
 });
 
+router.post("/findAll", async (req, res) => {
+  try {
+    const eventos = await Evento.findAll(); // Buscar todos los juegos en la base de datos
+    res.json(eventos); // Enviar la lista de juegos como respuesta
+  } catch (error) {
+    console.error("Error al buscar eventos:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
 module.exports = router;

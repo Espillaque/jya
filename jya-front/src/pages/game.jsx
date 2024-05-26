@@ -1,14 +1,13 @@
-import React, { useContext, useEffect,useState } from "react";
-import PartyForm from "../components/forms/formParty";
+import React, { useContext, useEffect } from "react";
 import Header from "../components/header-footer/header";
 import Footer from "../components/header-footer/footer";
-import Lists from "../components/list/lists";
 import { MyContext } from "../context";
 import ROUTES from "../router/routes";
+import GameForm from "../components/forms/formGame";
 
-const Main = () => {
+const Game = () => {
   const { contextData, setContextData } = useContext(MyContext);
-  const [selectedGame, setSelectedGame] = useState('');
+
   useEffect(() => {
     if (!contextData.token) {
       console.log("REDIREEEECTUS!");
@@ -19,11 +18,10 @@ const Main = () => {
   return (
     <>
       <Header />
-      <PartyForm selectedGame={selectedGame}/>
-      <Lists setSelectedGame={setSelectedGame}/>
+      <GameForm />
       <Footer />
     </>
   );
 };
 
-export default Main;
+export default Game;

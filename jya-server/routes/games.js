@@ -63,18 +63,32 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
-// Ruta para obtener un juego por su ID
 router.post("/find", async (req, res) => {
-  const juegoId = req.body.id;
+  const gameName = req.body.gameName;
 
   try {
-    const juego = await Juego.findByPk(juegoId);
+    const juego = await Juego.findOne({ where: { nombre: gameName } });
+
     if (!juego) {
-      return res.status(404).json({ error: "Juego no encontrado" });
+      // Si el juego no existe, enviar una respuesta indicando que no existe
+      return res.json({ exists: false });
+    } else {
+      // Si el juego existe, enviar una respuesta indicando que existe
+      return res.json({ exists: true });
     }
-    res.json(juego);
   } catch (error) {
     console.error("Error al buscar juego:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+
+router.post("/findAll", async (req, res) => {
+  try {
+    const juegos = await Juego.findAll(); // Buscar todos los juegos en la base de datos
+    res.json(juegos); // Enviar la lista de juegos como respuesta
+  } catch (error) {
+    console.error("Error al buscar juegos:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });

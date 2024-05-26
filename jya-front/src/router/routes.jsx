@@ -2,5 +2,7 @@ const ROUTES = {
   LOGIN: "LOGIN",
   MAIN: "MAIN",
   REGISTER: "REGISTER",
+  GAME: "GAME",
+  ATTENDANCE:"ATTENDANCE"
 };
 export default ROUTES;

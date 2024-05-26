@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
+import ROUTES from "../../router/routes";
+import { MyContext } from "../../context";
 
 const Header = () => {
+
+  const { contextData, setContextData } = useContext(MyContext);
+
   return (
-    <header className="flex flex-wrap sticky top-0 sm:justify-start sm:flex-nowrap z-50 w-full bg-gradient-to-r from-sky-400 to-stone-300 text-sm py-4 sm:py-0 dark:bg-sky-800">
+    <header className="flex flex-wrap sticky top-0 sm:justify-start sm:flex-nowrap z-50 w-full bg-gradient-to-r from-sky-400 to-stone-300 text-sm py-6 sm:py-4 dark:bg-sky-800">
       <nav
         className="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8"
         aria-label="Global"
@@ -23,37 +28,7 @@ const Header = () => {
                 aria-controls="navbar-hover-event"
                 aria-label="Toggle navigation"
               >
-                <svg
-                  className="hs-collapse-open:hidden flex-shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="3" x2="21" y1="6" y2="6" />
-                  <line x1="3" x2="21" y1="12" y2="12" />
-                  <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
-                <svg
-                  className="hs-collapse-open:block hidden flex-shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
+                
               </button>
             </div>
           </div>
@@ -63,67 +38,51 @@ const Header = () => {
             className="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
           >
             <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-              <a
+              <button
                 className="font-medium text-sky-500"
-                href="/"
                 aria-current="page"
+                onClick={() => {
+                  setContextData({
+                    ...contextData,
+                    activeRoute: ROUTES.MAIN, 
+                  });
+                }}
               >
                 Inicio
-              </a>
-
-              <div className="hs-dropdown [--strategy:static] sm:[--strategy:absolute] [--adaptive:none] sm:[--trigger:hover] ">
-                <button
-                  type="button"
-                  className="sm:py-4 flex items-center w-full text-gray-600 hover:text-gray-400 font-medium dark:text-neutral-400 dark:hover:text-neutral-500"
-                >
-                  Grupos de instituto
-                  <svg
-                    className="ms-2 flex-shrink-0 size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                </button>
-
-                <div className="hs-dropdown-menu transition-[opacity,margin] sm:border duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-10 top-full start-0 min-w-60 bg-white sm:shadow-md rounded-lg py-2 sm:px-2 dark:bg-neutral-800 sm:dark:border dark:border-neutral-700 dark:divide-neutral-700 before:absolute">
-                  <div className="sm:grid sm:grid-cols-3">
-                    <div className="flex flex-col">
-                      <a
-                        className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                        href="/"
-                      >
-                        Grupo de inmersion
-                      </a>
-                      <a
-                        className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                        href="/"
-                      >
-                        Grupo de inmersion turistica
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a
+              </button>
+              <button
                 className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
-                href="/"
+                onClick={() => {
+                  setContextData({
+                    ...contextData,
+                    activeRoute: ROUTES.GAME, 
+                  });
+                }}
               >
-                Reservas
-              </a>
-              <a
+                Game
+              </button>
+              <button
                 className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
-                href="/"
+                // onClick={() => {
+                //   setContextData({
+                //     ...contextData,
+                //     activeRoute: ROUTES.CALENDARIO, 
+                //   });
+                // }}
               >
-                Contacto
-              </a>
+                Calendar
+              </button>
+              <button
+                className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
+                onClick={() => {
+                  setContextData({
+                    ...contextData,
+                    activeRoute: ROUTES.ATTENDANCE, 
+                  });
+                }}
+              >
+                Asistencia
+              </button>
             </div>
           </div>
         </div>
@@ -131,4 +90,5 @@ const Header = () => {
     </header>
   );
 };
+
 export default Header;

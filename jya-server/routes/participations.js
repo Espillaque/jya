@@ -80,4 +80,33 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
+router.post("/findAll", async (req, res) => {
+  const { usuario_id, juego_id, evento_id } = req.query;
+
+  try {
+    // Construir la consulta de búsqueda
+    const whereClause = {};
+    if (usuario_id) whereClause.usuario_id = usuario_id;
+    if (juego_id) whereClause.juego_id = juego_id;
+    if (evento_id) whereClause.evento_id = evento_id;
+
+    // Buscar participaciones
+    const participaciones = await ParticipacionEvento.findAll({
+      where: whereClause,
+      include: [
+        { model: Usuario, attributes: ["id", "nombre", "correo_electronico"] },
+        { model: Juego, attributes: ["id", "nombre", "descripcion"] },
+        { model: Evento, attributes: ["id", "fecha", "direccion"] },
+      ],
+    });
+
+    // Enviar la respuesta con las participaciones encontradas
+    res.status(200).json(participaciones);
+  } catch (error) {
+    // Manejar errores
+    console.error("Error al buscar participaciones:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
 module.exports = router;

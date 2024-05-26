@@ -1,10 +1,9 @@
 import React, { useContext, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import { MyContext } from "../../context";
 import ROUTES from "../../router/routes";
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const userRef = useRef(null);
@@ -23,7 +22,28 @@ const RegisterForm = () => {
 
     // Aquí puedes añadir la lógica para manejar la autenticación
 
-    navigate("/");
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      nombre: user,
+      correo_electronico: email,
+      contrasena: password,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:5000/users/create", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+
+  
   };
 
   return (
@@ -66,7 +86,7 @@ const RegisterForm = () => {
           </form>
 
           <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
-            <Link to="/">
+            
               <button
                 type="button"
                 onClick={() => {
@@ -79,7 +99,7 @@ const RegisterForm = () => {
               >
                 Return
               </button>
-            </Link>
+            
           </div>
         </div>
 

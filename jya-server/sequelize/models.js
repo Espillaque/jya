@@ -93,13 +93,13 @@ const Evento = sequelize.define(
     direccion: {
       type: DataTypes.TEXT,
     },
-    descripcion: { // Aquí se añade la nueva columna 'descripcion'
+    descripcion: {
+      // Aquí se añade la nueva columna 'descripcion'
       type: DataTypes.TEXT, // Tipo de datos para la descripción
     },
   },
   { sequelize, modelName: "evento", timestamps: false },
 );
-
 
 Evento.belongsTo(Juego, { foreignKey: "juego_id" });
 Evento.belongsTo(Usuario, { foreignKey: "master_id" });

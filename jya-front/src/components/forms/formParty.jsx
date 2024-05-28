@@ -41,7 +41,7 @@ const PartyForm = ({ selectedGame }) => {
       descripcion: formData.description,
     });
 
-    console.log("Payload:", raw);
+console.log("Payload:", raw);
 
     const requestOptions = {
       method: "POST",

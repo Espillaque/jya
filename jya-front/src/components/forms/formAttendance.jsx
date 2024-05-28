@@ -81,8 +81,10 @@ const ParticipationsList = () => {
                 <strong>Dirección:</strong> {participation.Evento.direccion}
               </p>
               <p>
-                <strong>Descripción:</strong> {participation.Evento.description}
+                <strong>Descripción:</strong> {participation.Evento.descripcion}
+                
               </p>
+              
               <button
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
                 onClick={() => removeParticipation(participation.id)}

@@ -50,7 +50,7 @@ router.post("/find", async (req, res) => {
       include: [
         { model: Usuario, attributes: ["id", "nombre", "correo_electronico"] },
         { model: Juego, attributes: ["id", "nombre", "descripcion"] },
-        { model: Evento, attributes: ["id", "fecha", "direccion"] },
+        { model: Evento, attributes: ["id", "fecha", "direccion","descripcion"] },
       ],
     });
 
@@ -96,7 +96,7 @@ router.post("/findAll", async (req, res) => {
       include: [
         { model: Usuario, attributes: ["id", "nombre", "correo_electronico"] },
         { model: Juego, attributes: ["id", "nombre", "descripcion"] },
-        { model: Evento, attributes: ["id", "fecha", "direccion"] },
+        { model: Evento, attributes: ["id", "fecha", "direccion","descripcion"] },
       ],
     });
 

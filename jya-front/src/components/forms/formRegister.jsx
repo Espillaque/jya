@@ -8,7 +8,7 @@ const RegisterForm = () => {
   const passwordRef = useRef(null);
   const userRef = useRef(null);
 
-  const { contextData, setContextData } = useContext(MyContext);
+  const { appState, setAppState } = useContext(MyContext);
 
   const onSubmit = (data) => {
     data.preventDefault();
@@ -90,8 +90,8 @@ const RegisterForm = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setContextData({
-                    ...contextData,
+                  setAppState({
+                    ...appState,
                     activeRoute: ROUTES.LOGIN,
                   });
                 }}

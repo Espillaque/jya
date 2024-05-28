@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PartyForm from "../components/forms/formParty";
 import Header from "../components/header-footer/header";
 import Footer from "../components/header-footer/footer";
@@ -7,20 +7,20 @@ import { MyContext } from "../context";
 import ROUTES from "../router/routes";
 
 const Main = () => {
-  const { contextData, setContextData } = useContext(MyContext);
-  const [selectedGame, setSelectedGame] = useState('');
+  const { appState, setAppState } = useContext(MyContext);
+  const [selectedGame, setSelectedGame] = useState({ id: null, name: "" });
   useEffect(() => {
-    if (!contextData.token) {
+    if (!appState.token) {
       console.log("REDIREEEECTUS!");
-      setContextData({ ...contextData, activeRoute: ROUTES.LOGIN });
+      setAppState({ ...appState, activeRoute: ROUTES.LOGIN });
     }
   });
 
   return (
     <>
       <Header />
-      <PartyForm selectedGame={selectedGame}/>
-      <Lists setSelectedGame={setSelectedGame}/>
+      <PartyForm selectedGame={selectedGame} />
+      <Lists handleSelectGame={setSelectedGame} />
       <Footer />
     </>
   );

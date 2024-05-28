@@ -5,7 +5,7 @@ import ROUTES from "../../router/routes";
 const LoginForm = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const { contextData, setContextData } = useContext(MyContext);
+  const { appState, setAppState } = useContext(MyContext);
 
   const onSubmit = (data) => {
     data.preventDefault();
@@ -34,10 +34,12 @@ const LoginForm = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        setContextData({
-          ...contextData,
+        setAppState({
+          ...appState,
           activeRoute: ROUTES.MAIN,
           token: result.token,
+          userId: result.userId,
+          userName: result.userName 
         });
       })
       .catch((error) => console.error(error));
@@ -82,8 +84,8 @@ const LoginForm = () => {
             <p>Don't have an account?</p>
             <button
               onClick={() => {
-                setContextData({
-                  ...contextData,
+                setAppState({
+                  ...appState,
                   activeRoute: ROUTES.REGISTER,
                 });
               }}

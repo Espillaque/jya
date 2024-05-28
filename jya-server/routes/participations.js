@@ -20,7 +20,7 @@ router.post("/create", async (req, res) => {
         .json({ error: "Usuario, juego o evento no encontrado" });
     }
 
-    // Crear la participación
+    // Crea la participación
     const participacion = await ParticipacionEvento.create({
       usuario_id,
       juego_id,

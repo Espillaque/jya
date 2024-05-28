@@ -8,8 +8,8 @@ import ROUTES from "./routes.jsx";
 import Attendance from "./../pages/attendance.jsx";
 
 const Router = () => {
-  const { contextData, setContextData } = useContext(MyContext);
-  const { activeRoute } = contextData;
+  const { appState, setAppState } = useContext(MyContext);
+  const { activeRoute } = appState;
   return (
     <>
       {activeRoute === ROUTES.LOGIN && <Login />}

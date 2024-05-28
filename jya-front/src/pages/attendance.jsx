@@ -6,12 +6,12 @@ import ROUTES from "../router/routes";
 import AttendanceForm from "../components/forms/formAttendance";
 
 const Attendance = () => {
-  const { contextData, setContextData } = useContext(MyContext);
+  const { appState, setAppState } = useContext(MyContext);
 
   useEffect(() => {
-    if (!contextData.token) {
+    if (!appState.token) {
       console.log("REDIREEEECTUS!");
-      setContextData({ ...contextData, activeRoute: ROUTES.LOGIN });
+      setAppState({ ...appState, activeRoute: ROUTES.LOGIN });
     }
   });
 

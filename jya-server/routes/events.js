@@ -6,14 +6,14 @@ var Juego = require("../sequelize/models").Juego;
 
 router.post("/create", async (req, res) => {
   try {
-    const { master_id, juego_id, fecha, direccion } = req.body;
-
-    // Validar si el usuario y el juego existen
+    const { master_id, juego_id, fecha, direccion, descripcion } = req.body;
+    console.log("Data received:", { master_id, juego_id, fecha, direccion, descripcion });
+    // Comprueba que el usuario y el juego existen
     const usuario = await Usuario.findByPk(master_id);
     const juego = await Juego.findByPk(juego_id);
 
     if (!usuario || !juego) {
-      return res.status(400).json({ error: "Usuario o juego no encontrado" });
+      return res.status(400).json({ error: "Usuario/juego no encontrado" });
     }
 
     // Crear el evento
@@ -22,6 +22,7 @@ router.post("/create", async (req, res) => {
       juego_id,
       fecha,
       direccion,
+      descripcion,
     });
 
     res.status(201).json(evento);
@@ -101,7 +102,7 @@ router.post("/find", async (req, res) => {
 
 router.post("/findAll", async (req, res) => {
   try {
-    const eventos = await Evento.findAll(); // Buscar todos los juegos en la base de datos
+    const eventos = await Evento.findAll(); // Buscar todos los juegos en la base de datos    
     res.json(eventos); // Enviar la lista de juegos como respuesta
   } catch (error) {
     console.error("Error al buscar eventos:", error);

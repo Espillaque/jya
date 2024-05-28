@@ -92,21 +92,31 @@ router.post("/create", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { correo_electronico, contrasena } = req.body;
   try {
-    const user = await Usuario.findAll({
+    const user = await Usuario.findOne({
       where: {
         correo_electronico: correo_electronico,
       },
     });
-    if (user[0].contrasena === contrasena) {
-      res.status(200).json({ token: crypto.randomUUID() });
-    }else{
-      res.status(404).json({ error: "Invalid credentials" });
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
     }
-    
+
+    if (user.contrasena === contrasena) {
+      const token = crypto.randomUUID();
+      res.status(200).json({ 
+        token: token,
+        userId: user.id,
+        userName: user.nombre 
+      });
+    } else {
+      res.status(404).json({ error: "Credenciales inválidas" });
+    }
   } catch (error) {
     console.error("Error al loguear usuario:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-// Configuración de Sequelize
+// Sequelize configuration to access the database
 const sequelize = new Sequelize("juegos_de_mesa", "dwes", "dwes", {
   host: "localhost",
   dialect: "mysql",

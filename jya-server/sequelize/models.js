@@ -1,8 +1,8 @@
-// Definición del modelo de usuario
 
 var sequelize = require("./config").sequelize;
 const { DataTypes } = require("sequelize");
 
+// It defines user model
 const Usuario = sequelize.define(
   "Usuario",
   {
@@ -31,12 +31,12 @@ const Usuario = sequelize.define(
     },
   },
   {
-    tableName: "Usuarios", // Nombre de la tabla en plural
-    timestamps: false, // Si no usas createdAt y updatedAt
+    tableName: "Usuarios", 
+    timestamps: false, // It doesn´t create createdAt y updatedAt
   },
 );
 
-// Definición del modelo Juego
+// It defines game model
 const Juego = sequelize.define(
   "Juego",
   {
@@ -64,6 +64,7 @@ const Juego = sequelize.define(
   },
 );
 
+// It defines the event model
 const Evento = sequelize.define(
   "Evento",
   {
@@ -75,14 +76,14 @@ const Evento = sequelize.define(
     master_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "usuarios", // nombre de la tabla en la base de datos
+        model: "usuarios", 
         key: "id",
       },
     },
     juego_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "juegos", // nombre de la tabla en la base de datos
+        model: "juegos", 
         key: "id",
       },
     },
@@ -94,20 +95,20 @@ const Evento = sequelize.define(
       type: DataTypes.TEXT,
     },
     descripcion: {
-      // Aquí se añade la nueva columna 'descripcion'
-      type: DataTypes.TEXT, // Tipo de datos para la descripción
+      type: DataTypes.TEXT, 
     },
   },
   { sequelize, modelName: "evento", timestamps: false },
 );
 
+//It defines associations between models with foreign keys
 Evento.belongsTo(Juego, { foreignKey: "juego_id" });
 Evento.belongsTo(Usuario, { foreignKey: "master_id" });
 
 Juego.hasMany(Evento, { foreignKey: "juego_id" });
 Usuario.hasMany(Evento, { foreignKey: "master_id" });
 
-// Definición del modelo de ParticipacionEvento
+// It defines the participation model
 const ParticipacionEvento = sequelize.define(
   "ParticipacionEvento",
   {
@@ -119,32 +120,32 @@ const ParticipacionEvento = sequelize.define(
     usuario_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: Usuario, // Modelo al que hace referencia
+        model: Usuario, 
         key: "id",
       },
     },
     juego_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: Juego, // Modelo al que hace referencia
+        model: Juego, 
         key: "id",
       },
     },
     evento_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: Evento, // Modelo al que hace referencia
+        model: Evento, 
         key: "id",
       },
     },
   },
   {
-    tableName: "participacion_eventos", // Nombre de la tabla en la base de datos
-    timestamps: false, // Desactivar timestamps si no los usas
+    tableName: "participacion_eventos", 
+    timestamps: false, 
   },
 );
 
-// Definir las relaciones
+//It defines associations between models with foreign keys
 ParticipacionEvento.belongsTo(Usuario, { foreignKey: "usuario_id" });
 ParticipacionEvento.belongsTo(Juego, { foreignKey: "juego_id" });
 ParticipacionEvento.belongsTo(Evento, { foreignKey: "evento_id" });

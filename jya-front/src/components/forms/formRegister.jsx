@@ -1,17 +1,21 @@
 import React, { useContext, useRef } from "react";
-
+import photo from "../../images/image2.jpg";
 import { MyContext } from "../../context";
 import ROUTES from "../../router/routes";
 
+
 const RegisterForm = () => {
+  // References to the inputs within the form
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const userRef = useRef(null);
 
+  // Context managing the global state
   const { appState, setAppState } = useContext(MyContext);
 
+  // Function to handle form submission
   const onSubmit = (data) => {
-    data.preventDefault();
+    data.preventDefault(); // Prevents the default form submission behavior
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const user = userRef.current.value;
@@ -20,11 +24,11 @@ const RegisterForm = () => {
     console.log("Password:", password);
     console.log("User:", user);
 
-    // Aquí puedes añadir la lógica para manejar la autenticación
-
+    // Setting up headers for the request
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    // Creating data to be sent
     const raw = JSON.stringify({
       nombre: user,
       correo_electronico: email,
@@ -38,23 +42,22 @@ const RegisterForm = () => {
       redirect: "follow",
     };
 
+    // Fetch request to register the user
     fetch("http://localhost:5000/users/create", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
-
-  
   };
 
   return (
-    <section class="bg-gray-50 min-h-screen flex items-center justify-center">
-      <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-        <div class="md:w-1/2 px-10 md:px-16">
-          <h2 class="font-bold text-2xl text-[#002D74]">Register</h2>
+    <section className="bg-sapphire-50 min-h-screen flex items-center justify-center">
+      <div className="bg-sapphire-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div className="md:w-1/2 px-10 md:px-16">
+          <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
 
-          <form onSubmit={onSubmit} class="flex flex-col gap-4">
+          <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <input
-              class="p-2 mt-4 rounded-xl border"
+              className="p-2 mt-4 rounded-xl border"
               type="email"
               name="email"
               placeholder="Email"
@@ -62,7 +65,7 @@ const RegisterForm = () => {
             />
 
             <input
-              class="p-2  rounded-xl border"
+              className="p-2  rounded-xl border"
               type="user"
               name="user"
               placeholder="User"
@@ -70,7 +73,7 @@ const RegisterForm = () => {
             />
 
             <input
-              class="p-2  rounded-xl border w-full"
+              className="p-2  rounded-xl border w-full"
               type="password"
               name="password"
               placeholder="Password"
@@ -79,34 +82,33 @@ const RegisterForm = () => {
 
             <button
               type="submit"
-              class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300"
+              className="bg-sapphire-500 rounded-xl text-sapphire-50 py-2 hover:scale-105 duration-300"
             >
               Register
             </button>
           </form>
 
-          <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
-            
-              <button
-                type="button"
-                onClick={() => {
-                  setAppState({
-                    ...appState,
-                    activeRoute: ROUTES.LOGIN,
-                  });
-                }}
-                class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
-              >
-                Return
-              </button>
-            
+          <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+            <button
+              type="button"
+              onClick={() => {
+                // Changes the state to display the login form
+                setAppState({
+                  ...appState,
+                  activeRoute: ROUTES.LOGIN,
+                });
+              }}
+              className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
+            >
+              Return
+            </button>
           </div>
         </div>
 
-        <div class="md:block hidden w-1/2">
+        <div className="md:block hidden w-1/2">
           <img
-            class="rounded-2xl"
-            src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+            className="rounded-2xl"
+            src={photo} alt="Monopoly"
           />
         </div>
       </div>

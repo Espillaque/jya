@@ -7,7 +7,7 @@ import GameForm from "../components/forms/formGame";
 
 const Game = () => {
   const { appState, setAppState } = useContext(MyContext);
-
+// Check if the token is not present, and if so, redirect to the login page
   useEffect(() => {
     if (!appState.token) {
       console.log("REDIREEEECTUS!");

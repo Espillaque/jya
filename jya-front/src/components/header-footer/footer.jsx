@@ -2,24 +2,21 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-t from-sky-400 to-stone-300 via-slate-100 to-blue-400">
+    <footer className="bg-malachite-50">
       <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <img src="/" className="mr-5 h-6 sm:h-9" alt="logo" />
-            <p className="max-w-xs mt-4 text-sm text-gray-600">
-              <strong>Dirección:</strong> Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Voluptas, accusantium.
+            
+            <p className="max-w-xs mt-4 text-sm text-malachite-600">
+              <strong>Address:</strong> Av. de la Constitución, S/N, 41500 Alcalá de Guadaíra, Sevilla
             </p>
-            <p className="max-w-xs mt-4 text-sm text-gray-600">
-              <strong>Contacto:</strong> Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Voluptas, accusantium.
+            <p className="max-w-xs mt-4 text-sm text-malachite-600">
+              <strong>Contact:</strong> 954 10 09 11
             </p>
-            <p className="max-w-xs mt-4 text-sm text-gray-600">
-              <strong>Horario:</strong> Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Voluptas, accusantium.
+            <p className="max-w-xs mt-4 text-sm text-malachite-600">
+              <strong>Schedule:</strong>Monday to Friday from 8:15 AM to 2:45 PM
             </p>
-            <div className="flex mt-8 space-x-6 text-gray-600">
+            <div className="flex mt-8 space-x-6 ">
               <a
                 className="hover:opacity-75"
                 href="#"
@@ -79,21 +76,11 @@ const Footer = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <p className="font-medium">Servicios</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">
-                  Grupo de aprendizaje intensivo del idioma
-                </a>
-                <a className="hover:opacity-75" href="#">
-                  Grupo de turismo lingüístico
-                </a>
-              </nav>
-            </div>
+            
 
             <div>
               <p className="font-medium">Legal</p>
-              <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+              <nav className="flex flex-col mt-4 space-y-2 text-sm text-malachite-500">
                 <a className="hover:opacity-75" href="#">
                   {" "}
                   Privacy Policy{" "}
@@ -114,8 +101,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-gray-800">
-          © 2022 BlueStone Languages
+        <p className="mt-8 text-xs text-malachite-800">
+          © 2022 Juegos y amigo
         </p>
       </div>
     </footer>

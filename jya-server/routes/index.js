@@ -1,12 +1,12 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
+"Check from the browser if the server is working"
 router.get("/", function (req, res) {
   res.send("index");
 });
 
-/* GET home page. */
+/* It checks if it works */
 router.post("/echo", function (req, res) {
   res.send(req.body);
 });

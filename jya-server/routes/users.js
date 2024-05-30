@@ -3,20 +3,19 @@ var router = express.Router();
 var Usuario = require("../sequelize/models").Usuario;
 const crypto = require("crypto");
 
-// Ruta para obtener un usuario por su ID
+// Route for finding an user by its ID
 router.post("/find", async (req, res) => {
   const userId = req.body.id;
   console.log(userId);
   try {
-    // Buscar el usuario por su ID
     const usuario = await Usuario.findByPk(userId);
 
-    // Si no se encuentra ningún usuario con el ID proporcionado
+    // If it does not exist
     if (!usuario) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Enviar el usuario encontrado como respuesta
+    // Return the user
     res.json(usuario);
   } catch (error) {
     console.error("Error al buscar usuario:", error);
@@ -29,24 +28,27 @@ router.get("/", function (req, res) {
   res.send("respond with a resource");
 });
 
+//Route for updating an user
 router.put("/update", async (req, res) => {
   const userId = req.body.id;
   const { nombre, correo_electronico, contrasena } = req.body;
 
   try {
+    // Find the user using its id
     const usuario = await Usuario.findByPk(userId);
     if (!usuario) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Actualizar el usuario con los nuevos datos
+    // Update the data
     usuario.nombre = nombre;
     usuario.correo_electronico = correo_electronico;
     usuario.contrasena = contrasena;
 
-    // Guardar los cambios
+    // It saves the data
     await usuario.save();
 
+    //If it was sucessful
     res.json(usuario);
   } catch (error) {
     console.error("Error al actualizar usuario:", error);
@@ -54,29 +56,35 @@ router.put("/update", async (req, res) => {
   }
 });
 
+//Route for deleting an user by its ID
 router.delete("/delete", async (req, res) => {
   const userId = req.body.id;
 
   try {
+    //Find the user
     const usuario = await Usuario.findByPk(userId);
     if (!usuario) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Eliminar el usuario
+    // It deletes the user
     await usuario.destroy();
 
-    res.status(204).send(); // No Content
+    res.status(204).send(); 
   } catch (error) {
     console.error("Error al eliminar usuario:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
+//Route for creating user
 router.post("/create", async (req, res) => {
+  
+  //Receive variables
   const { nombre, correo_electronico, contrasena } = req.body;
 
   try {
+    //Create the user with the received variables
     const nuevoUsuario = await Usuario.create({
       nombre,
       correo_electronico,
@@ -89,9 +97,12 @@ router.post("/create", async (req, res) => {
   }
 });
 
+
 router.post("/login", async (req, res) => {
+  //It receives datas
   const { correo_electronico, contrasena } = req.body;
   try {
+    //It finds the user(email)
     const user = await Usuario.findOne({
       where: {
         correo_electronico: correo_electronico,
@@ -102,6 +113,7 @@ router.post("/login", async (req, res) => {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
+    //It checks if the password was correct and create token randomized, its id and user name
     if (user.contrasena === contrasena) {
       const token = crypto.randomUUID();
       res.status(200).json({ 

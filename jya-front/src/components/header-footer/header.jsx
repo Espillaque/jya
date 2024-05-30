@@ -3,15 +3,18 @@ import ROUTES from "../../router/routes";
 import { MyContext } from "../../context";
 
 const Header = () => {
+  // Access to global state and methods from context
   const { appState, setAppState, clearLocalStorage } = useContext(MyContext);
+  // State to manage menu open/close
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Function to toggle menu open/close
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="flex flex-wrap sticky top-0 sm:justify-start sm:flex-nowrap z-50 w-full bg-gradient-to-r from-sky-400 to-stone-300 text-sm py-6 sm:py-4 dark:bg-sky-800">
+    <header className="flex flex-wrap sticky top-0 sm:justify-start sm:flex-nowrap z-50 w-full bg-sapphire-500 text-sm py-6 sm:py-4 ">
       <nav
         className="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8"
         aria-label="Global"
@@ -19,15 +22,15 @@ const Header = () => {
         <div className="relative sm:flex sm:items-center">
           <div className="flex items-center justify-between">
             <a
-              className="flex-none text-xl font-semibold dark:text-white"
+              className="flex-none text-xl font-semibold text-malachite-50 "
               href="/"
             >
-              Juegos y amigos
+              Games and friends
             </a>
             <div className="sm:hidden">
               <button
                 type="button"
-                className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10"
+                className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-malachite-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 onClick={toggleMenu}
                 aria-controls="navbar-hover-event"
                 aria-expanded={isMenuOpen}
@@ -67,45 +70,48 @@ const Header = () => {
           >
             <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
               <button
-                className="font-medium text-sky-500"
+                className="font-medium text-malachite-50 hover:text-malachite-200"
                 aria-current="page"
                 onClick={() => {
+                  // Set active route to the main page
                   setAppState({
                     ...appState,
                     activeRoute: ROUTES.MAIN,
                   });
                 }}
               >
-                Inicio
+                Home
               </button>
               <button
-                className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
+                className="font-medium text-malachite-50 hover:text-malachite-200  "
                 onClick={() => {
+                  // Set active route to the games page
                   setAppState({
                     ...appState,
                     activeRoute: ROUTES.GAME,
                   });
                 }}
               >
-                Game
+                Games
               </button>
 
               <button
-                className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
+                className="font-medium text-malachite-50 hover:text-malachite-200 "
                 onClick={() => {
+                  // Set active route to the attendance page
                   setAppState({
                     ...appState,
                     activeRoute: ROUTES.ATTENDANCE,
                   });
                 }}
               >
-                Asistencia
+                Attendance
               </button>
               <button
                 onClick={clearLocalStorage}
-                className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
+                className="font-medium text-malachite-50 hover:text-malachite-200 "
               >
-                🛫LogOut
+                Log out
               </button>
             </div>
           </div>

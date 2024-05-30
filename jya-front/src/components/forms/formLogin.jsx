@@ -1,28 +1,33 @@
 import React, { useContext, useRef } from "react";
 import { MyContext } from "../../context";
 import ROUTES from "../../router/routes";
+import photo from "../../images/image1.jpeg";
 
 const LoginForm = () => {
+  // References to the form inputs
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  // Context to manage global state
   const { appState, setAppState } = useContext(MyContext);
 
+  // Function for form submission
   const onSubmit = (data) => {
-    data.preventDefault();
+    data.preventDefault(); // Preventing default form submission behavior
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    console.log("Email:", email);
-    console.log("Password:", password);
-
+    // Configuring request headers
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    // Creating data payload for the request
     const raw = JSON.stringify({
       correo_electronico: email,
       contrasena: password,
     });
 
+    // Request options
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -30,30 +35,33 @@ const LoginForm = () => {
       redirect: "follow",
     };
 
+    // Performing fetch request to the server
     fetch("http://localhost:5000/users/login", requestOptions)
-      .then((response) => response.json())
+      .then((response) => response.json()) // Parsing response to JSON
       .then((result) => {
-        console.log(result);
+        console.log(result); // Debugging
+        // Updating global state with login information
         setAppState({
           ...appState,
           activeRoute: ROUTES.MAIN,
           token: result.token,
           userId: result.userId,
-          userName: result.userName 
+          userName: result.userName,
         });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error)); // Handling potential errors
   };
 
   return (
-    <section className="bg-gray-50 min-h-screen flex items-center justify-center">
-      <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+    <section className="bg-sapphire-50 min-h-screen flex items-center justify-center">
+      <div className="bg-sapphire-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         <div className="md:w-1/2 px-8 md:px-16">
-          <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
+          <h2 className="font-bold text-2xl text-[#002D74]">Sign In</h2>
           <p className="text-xs mt-4 text-[#002D74]">
-            If you are already a member, easily log in
+            If you're already a member, easily sign in
           </p>
 
+          {/* Login form */}
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <input
               className="p-2 mt-8 rounded-xl border"
@@ -74,16 +82,18 @@ const LoginForm = () => {
 
             <button
               type="submit"
-              className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300"
+              className="bg-sapphire-500 rounded-xl text-sapphire-50 py-2 hover:scale-105 duration-300"
             >
-              Login
+              Sign In
             </button>
           </form>
 
+          {/* Registration message */}
           <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
             <p>Don't have an account?</p>
             <button
               onClick={() => {
+                //  Updating global state to switch to the registration route
                 setAppState({
                   ...appState,
                   activeRoute: ROUTES.REGISTER,
@@ -96,11 +106,9 @@ const LoginForm = () => {
           </div>
         </div>
 
+        {/* Image section */}
         <div className="md:block hidden w-1/2">
-          <img
-            className="rounded-2xl"
-            src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-          />
+          <img className="rounded-2xl" src={photo} alt="Photography about playing gameboard"/>
         </div>
       </div>
     </section>

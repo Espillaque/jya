@@ -1,3 +1,4 @@
+// Import router to create routes and the models created with sequelize
 var express = require("express");
 var router = express.Router();
 var Evento = require("../sequelize/models").Evento;
@@ -5,22 +6,24 @@ var Usuario = require("../sequelize/models").Usuario;
 var Juego = require("../sequelize/models").Juego;
 var ParticipacionEvento = require("../sequelize/models").ParticipacionEvento;
 
+//// Route for creating participations
 router.post("/create", async (req, res) => {
+  //Receive variables
   const { usuario_id, juego_id, evento_id } = req.body;
 
   try {
-    // Validar si el usuario, el juego y el evento existen
+    // Check that the user, the game and event exist
     const usuario = await Usuario.findByPk(usuario_id);
     const juego = await Juego.findByPk(juego_id);
     const evento = await Evento.findByPk(evento_id);
-
+    //If there was an error
     if (!usuario || !juego || !evento) {
       return res
         .status(400)
         .json({ error: "Usuario, juego o evento no encontrado" });
     }
 
-    // Crea la participación
+    // Create the participation
     const participacion = await ParticipacionEvento.create({
       usuario_id,
       juego_id,
@@ -29,48 +32,24 @@ router.post("/create", async (req, res) => {
 
     res.status(201).json(participacion);
   } catch (error) {
+    //If there was an error
     console.error("Error al crear la participación en el evento:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
-router.post("/find", async (req, res) => {
-  const { usuario_id, juego_id, evento_id } = req.query;
-
-  try {
-    // Construir la consulta de búsqueda
-    const whereClause = {};
-    if (usuario_id) whereClause.usuario_id = usuario_id;
-    if (juego_id) whereClause.juego_id = juego_id;
-    if (evento_id) whereClause.evento_id = evento_id;
-
-    // Buscar participaciones
-    const participaciones = await ParticipacionEvento.findAll({
-      where: whereClause,
-      include: [
-        { model: Usuario, attributes: ["id", "nombre", "correo_electronico"] },
-        { model: Juego, attributes: ["id", "nombre", "descripcion"] },
-        { model: Evento, attributes: ["id", "fecha", "direccion","descripcion"] },
-      ],
-    });
-
-    res.status(200).json(participaciones);
-  } catch (error) {
-    console.error("Error al buscar participaciones:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
-  }
-});
-
+//Route for deleting a participation by its ID
 router.delete("/delete", async (req, res) => {
   const { id } = req.body;
 
   try {
+    //Find the participation
     const participacion = await ParticipacionEvento.findByPk(id);
     if (!participacion) {
       return res.status(404).json({ error: "Participación no encontrada" });
     }
 
-    // Eliminar la participación
+    // It deletes teh participation
     await participacion.destroy();
 
     res.status(204).send(); // No Content
@@ -80,30 +59,30 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
+//Route for finding a participation by its ID
 router.post("/findAll", async (req, res) => {
-  const { usuario_id, juego_id, evento_id } = req.query;
+  const { usuario_id } = req.body;
 
   try {
-    // Construir la consulta de búsqueda
-    const whereClause = {};
-    if (usuario_id) whereClause.usuario_id = usuario_id;
-    if (juego_id) whereClause.juego_id = juego_id;
-    if (evento_id) whereClause.evento_id = evento_id;
+    // It builds the query
+    const whereClause = { usuario_id: usuario_id };
 
-    // Buscar participaciones
+    //It finds every participations
     const participaciones = await ParticipacionEvento.findAll({
       where: whereClause,
       include: [
         { model: Usuario, attributes: ["id", "nombre", "correo_electronico"] },
         { model: Juego, attributes: ["id", "nombre", "descripcion"] },
-        { model: Evento, attributes: ["id", "fecha", "direccion","descripcion"] },
+        {
+          model: Evento,
+          attributes: ["id", "fecha", "direccion", "descripcion"],
+        },
       ],
     });
 
-    // Enviar la respuesta con las participaciones encontradas
+    // Find all games in the database
     res.status(200).json(participaciones);
   } catch (error) {
-    // Manejar errores
     console.error("Error al buscar participaciones:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }

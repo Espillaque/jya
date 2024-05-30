@@ -7,7 +7,6 @@ import Footer from "../components/header-footer/footer";
 const Register = () => {
   return (
     <>
-      <Header />
       <RegisterForm />
       <Footer />
     </>

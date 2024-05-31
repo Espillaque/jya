@@ -112,6 +112,7 @@ const GameboardForm = () => {
               type="number"
               placeholder="Maximum players*"
               required
+              min={1}
             />
           </div>
           <div className="my-4">

@@ -6,7 +6,7 @@ const crypto = require("crypto");
 // Route for finding an user by its ID
 router.post("/find", async (req, res) => {
   const userId = req.body.id;
-  console.log(userId);
+  // console.log(userId);
   try {
     const usuario = await Usuario.findByPk(userId);
 

@@ -83,7 +83,7 @@ router.post("/find", async (req, res) => {
 
   try {
     const juego = await Juego.findOne({ where: { nombre: gameName } });
-    console.log(juego);
+    // console.log(juego);
     if (!juego) {
       // If it does not exist, return false, does not exist
       return res.json({ exists: false });

@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="mt-8 text-xs text-malachite-800">
-          © 2022 Juegos y amigo
+          © 2024 Games and Friends
         </p>
       </div>
     </footer>

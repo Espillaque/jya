@@ -82,20 +82,20 @@ const Lists = ({ handleSelectGame }) => {
     <div className="w-full p-4 bg-malachite-200">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-malachite-50 p-6 rounded-lg shadow-md h-96 overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Lista</h2>
+          <h2 className="text-xl font-bold mb-4">Games</h2>
           <div className="space-y-4">
             {games.map((game) => (
               <div key={game.id} className="p-4 border rounded-lg bg-sapphire-100">
                 <h3 className="text-lg font-semibold">{game.nombre}</h3>
-                <p className="text-gray-600">{game.descripcion}</p>
-                <p className="text-gray-500">
-                  Máximo de jugadores: {game.max_jugadores}
+                <p className="text-sapphire-700">{game.descripcion}</p>
+                <p className="text-sapphire-700">
+                Maximum number of players: {game.max_jugadores}
                 </p>
                 <button
                   className="mt-2 px-4 py-2 bg-sapphire-500 text-malachite-50 rounded hover:bg-sapphire-700"
                   onClick={() => handleUseGame(game.nombre, game.id)}
                 >
-                  Usar
+                  Use
                 </button>
               </div>
             ))}
@@ -110,18 +110,18 @@ const Lists = ({ handleSelectGame }) => {
                 .nombre;
               return (
                 <div key={event.id} className="p-4 border rounded-lg bg-sapphire-100">
-                  <p className="text-gray-600">
-                    <strong>Fecha:</strong> {formatDate(event.fecha)}
+                  <p className="text-sapphire-700">
+                    <strong>Date:</strong> {formatDate(event.fecha)}
                   </p>
-                  <p className="text-gray-600">
-                    <strong>Dirección:</strong> {event.direccion}
+                  <p className="text-sapphire-700">
+                    <strong>Direction:</strong> {event.direccion}
                   </p>
-                  <p className="text-gray-600">
-                    <strong>Juego:</strong>
+                  <p className="text-sapphire-700">
+                    <strong>Game:</strong>
                     {gameName1}
                   </p>
-                  <p className="text-gray-600">
-                    <strong>Descripción:</strong> {event.descripcion}
+                  <p className="text-sapphire-700">
+                    <strong>Description:</strong> {event.descripcion}
                   </p>
                   <div className="mt-2 space-x-2">
                   <button
@@ -133,7 +133,7 @@ const Lists = ({ handleSelectGame }) => {
                         className="px-4 py-2 bg-red-100 text-malachite-50 rounded hover:bg-red-200"
                         onClick={() => handleDeleteEvent(event.id)}
                       >
-                        Eliminar
+                        Delete
                       </button>
                     )}
                   </div>

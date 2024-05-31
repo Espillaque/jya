@@ -53,7 +53,7 @@ const RegisterForm = () => {
     <section className="bg-sapphire-50 min-h-screen flex items-center justify-center">
       <div className="bg-sapphire-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         <div className="md:w-1/2 px-10 md:px-16">
-          <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
+          <h2 className="font-bold text-2xl text-sapphire-700">Register</h2>
 
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <input
@@ -88,7 +88,7 @@ const RegisterForm = () => {
             </button>
           </form>
 
-          <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+          <div className="mt-3 text-xs flex justify-between items-center text-sapphire-700">
             <button
               type="button"
               onClick={() => {
@@ -98,7 +98,7 @@ const RegisterForm = () => {
                   activeRoute: ROUTES.LOGIN,
                 });
               }}
-              className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
+              className="py-2 px-5 border rounded-xl hover:scale-110 duration-300"
             >
               Return
             </button>

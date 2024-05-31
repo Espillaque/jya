@@ -56,8 +56,8 @@ const LoginForm = () => {
     <section className="bg-sapphire-50 min-h-screen flex items-center justify-center">
       <div className="bg-sapphire-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         <div className="md:w-1/2 px-8 md:px-16">
-          <h2 className="font-bold text-2xl text-[#002D74]">Sign In</h2>
-          <p className="text-xs mt-4 text-[#002D74]">
+          <h2 className="font-bold text-2xl text-sapphire-500">Sign In</h2>
+          <p className="text-xs mt-4 text-sapphire-600">
             If you're already a member, easily sign in
           </p>
 
@@ -89,7 +89,7 @@ const LoginForm = () => {
           </form>
 
           {/* Registration message */}
-          <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+          <div className="mt-3 text-xs flex justify-between items-center text-sapphire-700">
             <p>Don't have an account?</p>
             <button
               onClick={() => {
@@ -99,7 +99,7 @@ const LoginForm = () => {
                   activeRoute: ROUTES.REGISTER,
                 });
               }}
-              className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
+              className="py-2 px-5 border rounded-xl hover:scale-110 duration-300"
             >
               Register
             </button>

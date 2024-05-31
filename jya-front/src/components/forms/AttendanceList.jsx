@@ -68,14 +68,14 @@ const ParticipationsList = () => {
   };
 
   return (
-    <div className="w-full px-4 py-8 bg-malachite-100">
+    <div className="w-full px-4 py-8 bg-malachite-100 ">
       <h2 className="text-2xl font-semibold mb-4">
-        Eventos en los que participas:
+      Events you are participating in:
       </h2>
       {participations.length === 0 ? (
         <div className="flex justify-center items-center h-64">
-          <p className="border border-gray-300 p-4 rounded-lg text-center">
-            No te has unido a ningún evento.
+          <p className="border border-sapphire-700 p-4 rounded-lg text-center">
+          You have not joined any events.
           </p>
         </div>
       ) : (
@@ -83,10 +83,10 @@ const ParticipationsList = () => {
           {participations.map((participation) => (
             <div
               key={participation.id}
-              className="bg-white p-6 rounded-lg shadow-md space-y-4 bg-malachite-50"
+              className="p-6 rounded-lg shadow-md space-y-4 bg-malachite-50"
             >
               <h3 className="text-lg font-semibold">
-                Evento nº {participation.id}
+                Event nº {participation.id}
               </h3>
               <p>
                 <strong>Game:</strong> {participation.Juego.nombre}
@@ -99,7 +99,7 @@ const ParticipationsList = () => {
               </p>
 
               <button
-                className="px-4 py-2 bg-red-100 text-white rounded hover:bg-red-200"
+                className="px-4 py-2 bg-red-100 text-malachite-700 rounded hover:bg-red-200"
                 onClick={() => removeParticipation(participation.id)}
               >
                 Delete attendance

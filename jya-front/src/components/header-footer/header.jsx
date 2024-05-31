@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import ROUTES from "../../router/routes";
 import { MyContext } from "../../context";
 
+
 const Header = () => {
   // Access to global state and methods from context
   const { appState, setAppState, clearLocalStorage } = useContext(MyContext);
@@ -30,7 +31,7 @@ const Header = () => {
             <div className="sm:hidden">
               <button
                 type="button"
-                className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-malachite-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                className="p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-sapphire-700 bg-malachite-50 text-malachite-800 shadow-sm hover:bg-malachite-100 disabled:opacity-50 disabled:pointer-events-none"
                 onClick={toggleMenu}
                 aria-controls="navbar-hover-event"
                 aria-expanded={isMenuOpen}
@@ -48,15 +49,15 @@ const Header = () => {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
+                      strokeWidth="3"
                       d="M6 18L18 6M6 6l12 12"
                     />
                   ) : (
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16m-7 6h7"
+                      strokeWidth="1.5"
+                      d="m11 16.745c0-.414.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75h-9.5c-.414 0-.75-.336-.75-.75zm-9-5c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm4-5c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75z"
                     />
                   )}
                 </svg>

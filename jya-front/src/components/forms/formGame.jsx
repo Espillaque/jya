@@ -101,14 +101,14 @@ const GameboardForm = () => {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
             <input
               ref={gameNameRef}
-              className="w-full text-gray-900 mt-2 p-3 rounded-lg border border-sapphire-700 focus:outline-none focus:shadow-outline"
+              className="w-full  mt-2 p-3 rounded-lg border border-sapphire-700 focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Board game name*"
               required
             />
             <input
               ref={maxPlayersRef}
-              className="w-full text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline border border-sapphire-700"
+              className="w-full  mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline border border-sapphire-700"
               type="number"
               placeholder="Maximum players*"
               required
@@ -118,14 +118,14 @@ const GameboardForm = () => {
             <textarea
               ref={descriptionRef}
               placeholder="Description*"
-              className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline border border-sapphire-700"
+              className="w-full h-32  mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline border border-sapphire-700"
               required
             ></textarea>
           </div>
           <div className="my-2 w-1/2 lg:w-1/4">
             <button
               type="submit"
-              className="uppercase text-sm font-bold tracking-wide bg-sapphire-500  hover:bg-sapphire-700 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+              className="uppercase text-sm font-bold tracking-wide bg-sapphire-500  hover:bg-sapphire-700 text-sapphire-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
             >
               ¡Nice one!
             </button>

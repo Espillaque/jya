@@ -87,7 +87,7 @@ const PartyForm = ({ selectedGame }) => {
             className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5"
           >
             <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:shadow-outline focus:border-sapphire-500"
+              className="w-full bg-malachite-50  mt-2 p-3 rounded-lg border border-sapphire-700 focus:outline-none focus:shadow-outline focus:border-sapphire-500"
               type="text"
               placeholder="Search in the list below*"
               value={selectedGame.name}
@@ -96,14 +96,14 @@ const PartyForm = ({ selectedGame }) => {
             <input
               name="direction"
               ref={directionRef}
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:shadow-outline focus:border-sapphire-500"
+              className="w-full   mt-2 p-3 rounded-lg border border-sapphire.700 focus:outline-none focus:shadow-outline focus:border-sapphire-500"
               type="text"
               placeholder="Direction*"
             />
             <input
               name="date"
               ref={dateRef}
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:shadow-outline focus:border-sapphire-500"
+              className="w-full   mt-2 p-3 rounded-lg border  focus:outline-none focus:shadow-outline focus:border-sapphire-500"
               type="date"
               placeholder="Date*"
             />
@@ -112,7 +112,7 @@ const PartyForm = ({ selectedGame }) => {
                 name="description"
                 ref={descriptionRef}
                 placeholder="Description*"
-                className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:shadow-outline focus:border-blue-500"
+                className="w-full h-32   mt-2 p-3 rounded-lg border border-sapphire.700 focus:outline-none focus:shadow-outline focus:border-blue-500"
               ></textarea>
             </div>
             <div className="my-2 w-1/2 lg:w-1/4">
